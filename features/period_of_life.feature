@@ -1,52 +1,32 @@
-Feature: Period of life function
-
+Feature: Function period of life
     As a user
     I want to enter an age
-    For the system to return the life span to me 
+    So that the system returns the period of life
 
-    Scenario: Return invalid age
+    @period_life
+    Scenario: Submit Calculation
 
-        Given that the user entered the age
-        When the age entered is not an integer or zero
-        Then the user should see a message stating “AGE INSERTED IS INVALID” 
+        Given access to calculator
+        When submit the <age>
+        Then the system returns me <period of life>
 
-    Examples:
-        | age |     period of life      |
-        |  0  | INSERTED AGE IS INVALID |
-        | -1  | INSERTED AGE IS INVALID |
-        | -2  | INSERTED AGE IS INVALID |
+        Examples:
+            | <age> | <period of life> |
+            | 1     | "Child"          |
+            | 15    | "Child"          |
+            | 16    | "Adult"          |
+            | 57    | "Adult"          |
+            | 60    | "Elderly"        |
+            | 65    | "Elderly"        |
 
-    Scenario: Return period of life to age greater than zero and less than 16 years
+    Scenario: Invalid Age
 
-        Given that the user entered the age
-        When the age entered is an integer greater than zero and less than 16 years
-        Then the user should see a message stating “CHILD” 
+        Given access to calculator
+        When submit the <age>
+        Then the system returns me: <message>
 
-    Examples:
-        | age | period of life |
-        |  1  |     CHILD      |
-        | 15  |     CHILD      |
-       
-    Scenario: Return period of life to the age of 16 years or less and less than 60 years
-
-        Given that the user entered the age
-        When the age entered is an integer greater than or equal to 16 and less than 60 years
-        Then the user should see a message stating "ADULT" 
-
-    Examples:
-        | age | period of life |
-        | 16  |      ADULT     |
-        | 57  |      ADULT     |
-
-
-    Scenario: Returning to the age of 60 years or older
-
-        Given the user fills in the field with age
-        When the age entered is an integer greater than or equal to 60 years
-        Then the user should see a message stating “ELDERLY”  
-
-
-    Examples:
-        | age | period of life |
-        | 60  |     ELDERLY    |
-        | 65  |     ELDERLY    |
+        Examples:
+            | <age> | <message>     |
+            | 0     | "Invalid Age" |
+            | 1.5   | "Invalid Age" |
+            |       | "Enter Age"   |
