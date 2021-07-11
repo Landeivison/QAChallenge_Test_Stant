@@ -4,7 +4,7 @@ Feature: Interest rate calculator
     So that the annual interest rate can be calculated
 
     @calculator
-    Scenario: Calculate interest rate
+    Scenario Outline: Calculate interest rate
 
         Given which access the system
         When submit the <deposit_value> and <age>

@@ -19,7 +19,7 @@ Feature: Function period of life
             | 60    | "Elderly"        |
             | 65    | "Elderly"        |
 
-    Scenario: Invalid Age
+    Scenario Outline: Invalid Age
 
         Given access to calculator
         When submit the <age>
